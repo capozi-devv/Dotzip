@@ -3,7 +3,6 @@ package devv.capozi.zip.common.util;
 import java.awt.*;
 
 public class ColorUtils {
-
     // Convert RGB (0–255) to Hex
     public static String rgbToHex(int r, int g, int b) {
         return String.format(
@@ -13,12 +12,10 @@ public class ColorUtils {
                 clamp(b)
         );
     }
-
     // Convert Hex to Color
     public static Color hexToColor(String hex) {
         return Color.decode(hex);
     }
-
     // Convert RGB to HSL (H: 0–360, S/L: 0–1)
     public static float[] rgbToHSL(int r, int g, int b) {
         float rf = clamp(r) / 255.0F;

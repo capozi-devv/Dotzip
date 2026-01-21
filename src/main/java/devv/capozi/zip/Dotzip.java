@@ -1,11 +1,33 @@
 package devv.capozi.zip;
 
+import devv.capozi.zip.common.block.PlushBlock;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
 import java.util.List;
 import java.util.UUID;
 
 public class Dotzip implements ModInitializer {
+    public static final String MOD_ID = "dotzip";
+    private static Block registerBlock(String name, Block block) {
+        registerBlockItems(name, block);
+        return Registry.register(Registries.BLOCK, new Identifier(MOD_ID, name), block);
+    }
+    private static Item registerBlockItems(String name, Block block) {
+        return Registry.register(Registries.ITEM, new Identifier(MOD_ID, name),
+                new BlockItem(block, new FabricItemSettings()));
+    }
+    public static final Block CAPOZI_PLUSH = registerBlock("capozi_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+    public static final Block EYA_PLUSH = registerBlock("eya_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+    public static final Block COSMO_PLUSH = registerBlock("cosmo_plush",new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
     public static final List<UUID> capozi_uuid = List.of(UUID.fromString("e8d6e412-351a-4165-adc3-d46db2a9e561"));
     public static final List<UUID> friendUUIDs = List.of(
             UUID.fromString("9a5abccf-5013-423d-b137-453b13f07cab"), // everest
@@ -29,7 +51,7 @@ public class Dotzip implements ModInitializer {
             UUID.fromString("8dbebb74-01dd-4f62-b61d-09e1f6126e58"), // Watt
             UUID.fromString("739a71eb-d38c-409c-933a-b43660958c3c"), // Nico
             UUID.fromString("4de70f2f-8535-474c-ac9a-0a9f8eb82f8a")); // Spooks
-    public static List<UUID> bannedUUIDS;
+    public static List<UUID> bannedUUIDS = List.of(UUID.randomUUID());
     @Override
     public void onInitialize() {
 

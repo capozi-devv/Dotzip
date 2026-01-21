@@ -8,11 +8,9 @@ import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 
 @Mixin(PlayerListHud.class)
 public class PlayerListHudMixin {
-   private Text text = Text.literal("capozi_devv");
    @ModifyReturnValue(method = "applyGameModeFormatting", at = @At("RETURN"))
    private Text dotzip$applyCustomNameColours(Text original, PlayerListEntry entry) {
        if (Dotzip.friendUUIDs.contains(entry.getProfile().getId())) {
