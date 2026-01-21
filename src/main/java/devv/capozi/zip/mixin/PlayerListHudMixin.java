@@ -12,13 +12,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 
 @Mixin(PlayerListHud.class)
 public class PlayerListHudMixin {
+   private Text text = Text.literal("capozi_devv");
    @ModifyReturnValue(method = "applyGameModeFormatting", at = @At("RETURN"))
    private Text dotzip$applyCustomNameColours(Text original, PlayerListEntry entry) {
        if (Dotzip.friendUUIDs.contains(entry.getProfile().getId())) {
           return Text.literal(original.getString()).styled(new TextsUtils().colorHex("#03fcfc"));
        }
-       if (entry.getProfile().getId() == Dotzip.capozi_uuid) {
-           return Text.literal(original.getString()).styled(new TextsUtils().colorHex("#ff005a"));
+       if (Dotzip.capozi_uuid.contains(entry.getProfile().getId())) {
+           return Text.literal("capozi.devv").styled(new TextsUtils().colorHex("#ff005a"));
        }
        return original;
    }
