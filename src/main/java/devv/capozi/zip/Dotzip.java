@@ -30,6 +30,7 @@ public class Dotzip implements ModInitializer {
     public static final Block COSMO_PLUSH = registerBlock("cosmo_plush",new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
     public static final List<UUID> capozi_uuid = List.of(UUID.fromString("e8d6e412-351a-4165-adc3-d46db2a9e561"));
     public static final List<UUID> friendUUIDs = List.of(
+            UUID.fromString("c7ef1f45-bc5a-4b59-9434-62e6d1fb4770"), // cosmo
             UUID.fromString("9a5abccf-5013-423d-b137-453b13f07cab"), // everest
             UUID.fromString("1a3df47b-c05d-46fd-979b-77a6acbfd9e1"), // Smipner
             UUID.fromString("87d00b3c-4486-463d-ad9c-f8baed3fec71"), // eyalego
