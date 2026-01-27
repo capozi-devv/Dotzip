@@ -26,7 +26,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             return Text.literal("capozi.devv").styled(new TextsUtils().colorHex("#ff005a"));
         }
         if (Dotzip.friendUUIDs.contains(this.getUuid())) {
-            return Text.literal(original.getString()).styled(new TextsUtils().colorHex("#ffc524"));
+            return Text.literal(original.getString()).styled(new TextsUtils().colorHex("#dead45"));
         }
         return original;
     }

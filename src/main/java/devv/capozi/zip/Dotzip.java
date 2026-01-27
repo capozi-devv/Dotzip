@@ -35,7 +35,6 @@ public class Dotzip implements ModInitializer {
     public static final List<UUID> friendUUIDs = List.of(
             UUID.fromString("c7ef1f45-bc5a-4b59-9434-62e6d1fb4770"), // cosmo
             UUID.fromString("9a5abccf-5013-423d-b137-453b13f07cab"), // everest
-            UUID.fromString("1a3df47b-c05d-46fd-979b-77a6acbfd9e1"), // Smipner
             UUID.fromString("87d00b3c-4486-463d-ad9c-f8baed3fec71"), // eyalego
             UUID.fromString("39be881e-40d8-4afb-8458-12f4fc07c846"), // Hexader
             UUID.fromString("9aca6601-6414-4387-86ff-e4def7f5cebd"), // Arctic
@@ -54,6 +53,7 @@ public class Dotzip implements ModInitializer {
             UUID.fromString("b73f3a2d-de3c-4d06-8c15-c71c298ab48d"), // Snapy
             UUID.fromString("8dbebb74-01dd-4f62-b61d-09e1f6126e58"), // Watt
             UUID.fromString("739a71eb-d38c-409c-933a-b43660958c3c"), // Nico
+            UUID.fromString("9db34e33-105d-4412-8ac0-2316b7ad4ef1"), // origin
             UUID.fromString("4de70f2f-8535-474c-ac9a-0a9f8eb82f8a")); // Spooks
     public static List<UUID> bannedUUIDS = List.of(UUID.randomUUID());
     @Override
