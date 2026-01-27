@@ -32,14 +32,15 @@ public class Dotzip implements ModInitializer {
     public static final Block EYA_PLUSH = registerBlock("eya_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
     public static final Block COSMO_PLUSH = registerBlock("cosmo_plush",new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
     public static final List<UUID> capozi_uuid = List.of(UUID.fromString("e8d6e412-351a-4165-adc3-d46db2a9e561"));
-    public static final List<UUID> friendUUIDs = List.of(
-            UUID.fromString("c7ef1f45-bc5a-4b59-9434-62e6d1fb4770"), // cosmo
+    public static final List<UUID> contributer_uuids = List.of(
             UUID.fromString("9a5abccf-5013-423d-b137-453b13f07cab"), // everest
             UUID.fromString("87d00b3c-4486-463d-ad9c-f8baed3fec71"), // eyalego
+            UUID.fromString("9da4f059-fb15-4b34-a2e5-54cfecf7c22e"), // Kindling
+            UUID.fromString("c7ef1f45-bc5a-4b59-9434-62e6d1fb4770")); // cosmo
+    public static final List<UUID> friendUUIDs = List.of(
             UUID.fromString("39be881e-40d8-4afb-8458-12f4fc07c846"), // Hexader
             UUID.fromString("9aca6601-6414-4387-86ff-e4def7f5cebd"), // Arctic
             UUID.fromString("7700b3f5-0241-47a0-9df1-887254ef247b"), // RedJava
-            UUID.fromString("9da4f059-fb15-4b34-a2e5-54cfecf7c22e"), // Kindling
             UUID.fromString("ae445ba6-77ad-47fb-b1db-e582e46d2788"), // rustic
             UUID.fromString("14a34d5c-9840-43c1-8174-251ce81d6eea"), // unknown
             UUID.fromString("b98321a1-933b-4517-98ac-d5b70c8966f2"), // moth

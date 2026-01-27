@@ -25,8 +25,11 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         if (Dotzip.capozi_uuid.contains(this.getUuid())){
             return Text.literal("capozi.devv").styled(new TextsUtils().colorHex("#ff005a"));
         }
-        if (Dotzip.friendUUIDs.contains(this.getUuid())) {
+        if (Dotzip.contributer_uuids.contains(this.getUuid())) {
             return Text.literal(original.getString()).styled(new TextsUtils().colorHex("#dead45"));
+        }
+        if (Dotzip.friendUUIDs.contains(this.getUuid())) {
+            return Text.literal(original.getString()).styled(new TextsUtils().colorHex("#43819c"));
         }
         return original;
     }

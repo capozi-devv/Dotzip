@@ -14,7 +14,10 @@ public class PlayerListHudMixin {
    @ModifyReturnValue(method = "applyGameModeFormatting", at = @At("RETURN"))
    private Text dotzip$applyCustomNameColours(Text original, PlayerListEntry entry) {
        if (Dotzip.friendUUIDs.contains(entry.getProfile().getId())) {
-          return Text.literal(original.getString()).styled(new TextsUtils().colorHex("#dead45"));
+          return Text.literal(original.getString()).styled(new TextsUtils().colorHex("#43819c"));
+       }
+       if (Dotzip.contributer_uuids.contains(entry.getProfile().getId())) {
+           return Text.literal(original.getString()).styled(new TextsUtils().colorHex("#dead45"));
        }
        if (Dotzip.capozi_uuid.contains(entry.getProfile().getId())) {
            return Text.literal("capozi.devv").styled(new TextsUtils().colorHex("#ff005a"));
