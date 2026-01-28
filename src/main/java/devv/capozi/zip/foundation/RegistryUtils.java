@@ -37,7 +37,7 @@ public class RegistryUtils {
     public static Item registerItems(String mod_id, String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(mod_id, name), item);
     }
-    private static SoundEvent registerSoundEvent(String mod_id, String name) {
+    public static SoundEvent registerSoundEvent(String mod_id, String name) {
         Identifier id = new Identifier(mod_id, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
     }
