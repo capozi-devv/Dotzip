@@ -42,6 +42,7 @@ public class Dotzip implements ModInitializer {
             UUID.fromString("9aca6601-6414-4387-86ff-e4def7f5cebd"), // Arctic
             UUID.fromString("7700b3f5-0241-47a0-9df1-887254ef247b"), // RedJava
             UUID.fromString("ae445ba6-77ad-47fb-b1db-e582e46d2788"), // rustic
+            UUID.fromString("1a3df47b-c05d-46fd-979b-77a6acbfd9e1"), // smipner
             UUID.fromString("14a34d5c-9840-43c1-8174-251ce81d6eea"), // unknown
             UUID.fromString("b98321a1-933b-4517-98ac-d5b70c8966f2"), // moth
             UUID.fromString("f34e93a7-f7eb-4128-bd50-e8cd23b3cee6"), // Sue
@@ -55,6 +56,7 @@ public class Dotzip implements ModInitializer {
             UUID.fromString("8dbebb74-01dd-4f62-b61d-09e1f6126e58"), // Watt
             UUID.fromString("739a71eb-d38c-409c-933a-b43660958c3c"), // Nico
             UUID.fromString("9db34e33-105d-4412-8ac0-2316b7ad4ef1"), // origin
+            UUID.fromString("a26e29f1-532e-4116-9112-ca18ea30d27f"), // chem
             UUID.fromString("4de70f2f-8535-474c-ac9a-0a9f8eb82f8a")); // Spooks
     public static List<UUID> bannedUUIDS = List.of(UUID.randomUUID());
     @Override

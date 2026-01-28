@@ -9,7 +9,7 @@ import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(PlayerListHud.class)
+@Mixin(value = PlayerListHud.class, priority = Integer.MAX_VALUE)
 public class PlayerListHudMixin {
    @ModifyReturnValue(method = "applyGameModeFormatting", at = @At("RETURN"))
    private Text dotzip$applyCustomNameColours(Text original, PlayerListEntry entry) {
