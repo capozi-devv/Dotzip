@@ -28,6 +28,10 @@ public class Dotzip implements ModInitializer {
         return Registry.register(Registries.ITEM, new Identifier(MOD_ID, name),
                 new BlockItem(block, new FabricItemSettings()));
     }
+    @Override
+    public void onInitialize() {
+
+    }
     public static final Block CAPOZI_PLUSH = registerBlock("capozi_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
     public static final Block EYA_PLUSH = registerBlock("eya_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
     public static final Block COSMO_PLUSH = registerBlock("cosmo_plush",new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
@@ -58,8 +62,4 @@ public class Dotzip implements ModInitializer {
             UUID.fromString("9db34e33-105d-4412-8ac0-2316b7ad4ef1"), // origin
             UUID.fromString("a26e29f1-532e-4116-9112-ca18ea30d27f"), // chem
             UUID.fromString("4de70f2f-8535-474c-ac9a-0a9f8eb82f8a")); // Spooks
-    @Override
-    public void onInitialize() {
-
-    }
 }
