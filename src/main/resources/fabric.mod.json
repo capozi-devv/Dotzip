@@ -3,7 +3,7 @@
   "id": "dotzip",
   "version": "${version}",
   "name": "§aDotzip",
-  "description": "",
+  "description": "Shared code between capozi.devv's various mods",
   "authors": ["capozi.devv", "eeverest"],
   "contact": {},
   "license": "MIT",
