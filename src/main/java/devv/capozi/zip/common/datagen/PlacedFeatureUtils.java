@@ -13,7 +13,7 @@ import java.util.List;
 
 public class PlacedFeatureUtils {
     public static RegistryKey<PlacedFeature> registerKey(String mod_id, String name) {
-        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(mod_id, name));
+        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(mod_id, name));
     }
     public static void register(Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key, RegistryEntry<ConfiguredFeature<?, ?>> configuration, List<PlacementModifier> modifiers) {
         context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));

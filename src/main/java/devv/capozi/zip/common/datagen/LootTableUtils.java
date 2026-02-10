@@ -6,12 +6,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.TrapdoorBlock;
+import net.minecraft.registry.RegistryWrapper;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class LootTableUtils extends FabricBlockLootTableProvider {
-    protected LootTableUtils(FabricDataOutput dataOutput) {
-        super(dataOutput);
+    protected LootTableUtils(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, registryLookup);
     }
     @Override
     public void generate() {

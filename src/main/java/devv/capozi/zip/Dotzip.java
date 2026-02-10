@@ -1,9 +1,7 @@
 package devv.capozi.zip;
 
 import devv.capozi.zip.common.block.PlushBlock;
-import devv.capozi.zip.server.worldgen.ExpandedJigsawStructure;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -12,22 +10,17 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.structure.StructureType;
 
 import java.util.List;
 import java.util.UUID;
 
 public class Dotzip implements ModInitializer {
     public static final String MOD_ID = "dotzip";
-    public static final StructureType<ExpandedJigsawStructure> EXPANDED_JIGSAW = Registry.register(Registries.STRUCTURE_TYPE, new Identifier(MOD_ID, "expanded_jigsaw"), () -> ExpandedJigsawStructure.CODEC);
     private static Block registerBlock(String name, Block block) {
         registerBlockItems(name, block);
-        return Registry.register(Registries.BLOCK, new Identifier(MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, Identifier.of(MOD_ID, name), block);
     }
-    private static Item registerBlockItems(String name, Block block) {
-        return Registry.register(Registries.ITEM, new Identifier(MOD_ID, name),
-                new BlockItem(block, new FabricItemSettings()));
-    }
+    private static Item registerBlockItems(String name, Block block) { return Registry.register(Registries.ITEM, Identifier.of(MOD_ID, name), new BlockItem(block, new Item.Settings())); }
     @Override
     public void onInitialize() {
 
