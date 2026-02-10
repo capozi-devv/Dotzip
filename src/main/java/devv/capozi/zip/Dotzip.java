@@ -20,7 +20,7 @@ public class Dotzip implements ModInitializer {
         registerBlockItems(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(MOD_ID, name), block);
     }
-    private static Item registerBlockItems(String name, Block block) {return Registry.register(Registries.ITEM, Identifier.of(MOD_ID, name), new BlockItem(block, new Item.Settings()));}
+    private static Item registerBlockItems(String name, Block block) { return Registry.register(Registries.ITEM, Identifier.of(MOD_ID, name), new BlockItem(block, new Item.Settings())); }
     @Override
     public void onInitialize() {
 
