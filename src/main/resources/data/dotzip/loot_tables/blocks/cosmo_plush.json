@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "menagerie:cosmo_plush"
+          "name": "dotzip:cosmo_plush"
         }
       ],
       "rolls": 1.0

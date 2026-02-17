@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "dotzip:block/eya_plush", "y": 180 },
+    "facing=south": { "model": "dotzip:block/eya_plush" },
+    "facing=west":  { "model": "dotzip:block/eya_plush", "y": 90 },
+    "facing=east":  { "model": "dotzip:block/eya_plush", "y": 270 }
+  }
+}

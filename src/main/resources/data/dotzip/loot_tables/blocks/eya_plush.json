@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "menagerie:eya_plush"
+          "name": "dotzip:eya_plush"
         }
       ],
       "rolls": 1.0
