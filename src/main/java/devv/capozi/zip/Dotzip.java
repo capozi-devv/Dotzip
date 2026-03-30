@@ -1,6 +1,7 @@
 package devv.capozi.zip;
 
 import devv.capozi.zip.common.block.PlushBlock;
+import devv.capozi.zip.common.index.Registrar;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -8,26 +9,25 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 
 import java.util.List;
 import java.util.UUID;
 
-public class Dotzip implements ModInitializer {
+public @SuppressWarnings("all") class Dotzip implements ModInitializer {
     public static final String MOD_ID = "dotzip";
-    private static Block registerBlock(String name, Block block) {
-        registerBlockItems(name, block);
-        return Registry.register(Registries.BLOCK, Identifier.of(MOD_ID, name), block);
-    }
-    private static Item registerBlockItems(String name, Block block) { return Registry.register(Registries.ITEM, Identifier.of(MOD_ID, name), new BlockItem(block, new Item.Settings())); }
+    public static Registrar<Block> blockRegistrar = new Registrar<Block>(MOD_ID, Registries.BLOCK);
+    public static Registrar<Item> blockItemRegistrar = new Registrar<Item>(MOD_ID, Registries.ITEM);
     @Override
     public void onInitialize() {
-
+        blockRegistrar.setRegistries();
+        blockRegistrar.setRegistries();
     }
-    public static final Block CAPOZI_PLUSH = registerBlock("capozi_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
-    public static final Block EYA_PLUSH = registerBlock("eya_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
-    public static final Block COSMO_PLUSH = registerBlock("cosmo_plush",new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+    public static final Block CAPOZI_PLUSH = blockRegistrar.add("capozi_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+    public static final Block EYA_PLUSH = blockRegistrar.add("eya_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+    public static final Block COSMO_PLUSH = blockRegistrar.add("cosmo_plush",new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+//    public static final Item CAPOZI_PLUSH_ITEM = blockItemRegistrar.add("capozi_plush", new BlockItem(CAPOZI_PLUSH, new Item.Settings()));
+//    public static final Item COSMO_PLUSH_ITEM = blockItemRegistrar.add("cosmo_plush", new BlockItem(COSMO_PLUSH, new Item.Settings()));
+//    public static final Item EYA_PLUSH_ITEM = blockItemRegistrar.add("eya_plush", new BlockItem(EYA_PLUSH, new Item.Settings()));
     public static final List<UUID> capozi_uuid = List.of(UUID.fromString("e8d6e412-351a-4165-adc3-d46db2a9e561"));
     public static final List<UUID> contributer_uuids = List.of(
             UUID.fromString("9a5abccf-5013-423d-b137-453b13f07cab"), // everest
@@ -42,7 +42,6 @@ public class Dotzip implements ModInitializer {
             UUID.fromString("1a3df47b-c05d-46fd-979b-77a6acbfd9e1"), // smipner
             UUID.fromString("14a34d5c-9840-43c1-8174-251ce81d6eea"), // unknown
             UUID.fromString("b98321a1-933b-4517-98ac-d5b70c8966f2"), // moth
-            UUID.fromString("f34e93a7-f7eb-4128-bd50-e8cd23b3cee6"), // Sue
             UUID.fromString("ec23b8cd-fb66-4d9b-83b9-d748c0b05e6e"), // yuuki
             UUID.fromString("7a4a8f5e-acd5-41d7-9e3d-998bfd623c3d"), // Lazy
             UUID.fromString("0ec5dee7-d32a-44db-9b9d-c03b05459c65"), // Chaos
@@ -53,8 +52,10 @@ public class Dotzip implements ModInitializer {
             UUID.fromString("8dbebb74-01dd-4f62-b61d-09e1f6126e58"), // Watt
             UUID.fromString("739a71eb-d38c-409c-933a-b43660958c3c"), // Nico
             UUID.fromString("9db34e33-105d-4412-8ac0-2316b7ad4ef1"), // origin
-            UUID.fromString("a26e29f1-532e-4116-9112-ca18ea30d27f"), // chem
             UUID.fromString("5fc814d8-e485-4977-be1f-e1bb028c1929"), // farzad
             UUID.fromString("4de70f2f-8535-474c-ac9a-0a9f8eb82f8a")); // Spooks
-    public static final List<UUID> bannedUUIDs = List.of();
+    public static final List<UUID> bannedUUIDs = List.of(
+            UUID.fromString("f34e93a7-f7eb-4128-bd50-e8cd23b3cee6"), // Sue
+            UUID.fromString("a26e29f1-532e-4116-9112-ca18ea30d27f") // chem
+    );
 }

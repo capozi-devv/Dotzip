@@ -1,7 +1,8 @@
-package devv.capozi.zip.foundation;
+package devv.capozi.zip.common.index;
 
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantment;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.BlockItem;
@@ -14,26 +15,26 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
-public class RegistryUtils {
-    public static Block registerBlock(String mod_id, String name, Block block, boolean registerBlockItem) {
+public @SuppressWarnings("all") class RegistryUtils {
+    protected static Block block(String mod_id, String name, Block block, boolean registerBlockItem) {
         if (registerBlockItem) {
-            registerBlockItem(mod_id, name, block);
+            blockItem(mod_id, name, block);
         }
         return Registry.register(Registries.BLOCK, Identifier.of(mod_id, name), block);
     }
-    public static Item registerBlockItem(String mod_id, String name, Block block) {
+    protected static Item blockItem(String mod_id, String name, Block block) {
         return Registry.register(Registries.ITEM, Identifier.of(mod_id, name), new BlockItem(block, new Item.Settings()));
     }
-    public static RegistryKey<DamageType> registerDamageType(String mod_id, String path) {
+    protected static RegistryKey<DamageType> damageType(String mod_id, String path) {
         return RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of(mod_id, path));
     }
-    public static RegistryEntry<StatusEffect> registerStatusEffect(String mod_id, String name, StatusEffect statusEffect) {
+    protected static RegistryEntry<StatusEffect> statusEffect(String mod_id, String name, StatusEffect statusEffect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(mod_id, name),statusEffect);
     }
-    public static Item registerItems(String mod_id, String name, Item item) {
+    protected static Item item(String mod_id, String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(mod_id, name), item);
     }
-    public static SoundEvent registerSoundEvent(String mod_id, String name) {
+    protected static SoundEvent soundEvent(String mod_id, String name) {
         Identifier id = Identifier.of(mod_id, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
     }
