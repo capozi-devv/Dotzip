@@ -18,14 +18,10 @@ public @SuppressWarnings("all") class Registrar<T> {
     public T add(String id, T object) {
         ids.add(id);
         registryObjects.add(object);
-        if (registry == Registries.BLOCK) {
-            return Registry.register(registry, Identifier.of(mod_id, id), object);
-        }
         return object;
     }
     public void setRegistries() {
         if (ids.size() != registryObjects.size()) throw new RuntimeException("mismatched_object_key_array_size");
-        if (registry == Registries.BLOCK) return;
         for (int i = 0; i < ids.size(); i++) {
             Registry.register(registry, Identifier.of(mod_id, ids.get(i)), registryObjects.get(i));
         }
