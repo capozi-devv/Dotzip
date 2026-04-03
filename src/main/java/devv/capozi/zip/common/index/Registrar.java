@@ -21,7 +21,7 @@ public @SuppressWarnings("all") class Registrar<T> {
         return object;
     }
     public void setRegistries() {
-        if (ids.size() != registryObjects.size()) throw new RuntimeException("mismatched_object_key_array_size");
+        if (ids.size() != registryObjects.size()) throw new IllegalStateException("mismatched_object_key_array_size");
         for (int i = 0; i < ids.size(); i++) {
             Registry.register(registry, Identifier.of(mod_id, ids.get(i)), registryObjects.get(i));
         }
