@@ -18,6 +18,7 @@ public @SuppressWarnings("all") class Registrar<T> {
     private List<String> ids = new ArrayList<>();
     private List<T> registryObjects = new ArrayList<>();
     public final Registry<T> registry;
+    private boolean closeRegistrar = false;
 
     /**
      * The Constructor determines the namespace of objects and the registry instance to which they are added
@@ -37,9 +38,12 @@ public @SuppressWarnings("all") class Registrar<T> {
      * @return {@code T}, An object of the same class as the class type
      */
     public T add(String id, T object) {
-        ids.add(id);
-        registryObjects.add(object);
-        return object;
+        if (!closeRegistrar) {
+            ids.add(id);
+            registryObjects.add(object);
+            return object;
+        }
+        return null;
     }
     /**
      * Calling this method will cause all objects in {@code registryObjects} to be added to the
@@ -48,9 +52,12 @@ public @SuppressWarnings("all") class Registrar<T> {
      * @throws  IllegalStateException
      */
     public void setRegistries() {
-        if (ids.size() != registryObjects.size()) throw new IllegalStateException("mismatched_object_key_array_size");
-        for (int i = 0; i < ids.size(); i++) {
-            Registry.register(registry, Identifier.of(mod_id, ids.get(i)), registryObjects.get(i));
+        if (!closeRegistrar) {
+            if (ids.size() != registryObjects.size()) throw new IllegalStateException("mismatched_object_key_array_size");
+            for (int i = 0; i < ids.size(); i++) {
+                Registry.register(registry, Identifier.of(mod_id, ids.get(i)), registryObjects.get(i));
+            }
+            closeRegistrar = true;
         }
     }
 }

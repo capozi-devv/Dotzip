@@ -5,8 +5,6 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 
-import java.util.UUID;
-
 public class DotzipClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
