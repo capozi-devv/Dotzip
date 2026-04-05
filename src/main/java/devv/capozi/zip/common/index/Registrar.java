@@ -1,6 +1,5 @@
 package devv.capozi.zip.common.index;
 
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
@@ -45,7 +44,7 @@ public @SuppressWarnings("all") class Registrar<T> {
     /**
      * Calling this method will cause all objects in {@code registryObjects} to be added to the
      * selected registry of mathcing type with an id of a simliar List index to {@code ids}. If the size of
-     * {@code ids} and {@code registryObjects} will cause an {@code IllegalStateException}
+     * {@code ids} and {@code registryObjects} do not match, this will throw an {@code IllegalStateException}
      * @throws  IllegalStateException
      */
     public void setRegistries() {
