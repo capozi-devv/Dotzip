@@ -19,8 +19,8 @@ public @SuppressWarnings("all") class Dotzip implements ModInitializer {
     public static Registrar<Item> blockItemRegistrar = new Registrar<Item>(MOD_ID, Registries.ITEM);
     @Override
     public void onInitialize() {
-        blockRegistrar.setRegistries();
-        blockItemRegistrar.setRegistries();
+        blockRegistrar.setRegistries(blockRegistrar.entries, blockRegistrar.registerer);
+        blockItemRegistrar.setRegistries(blockItemRegistrar.entries, blockItemRegistrar.registerer);
     }
     public static final Block CAPOZI_PLUSH = blockRegistrar.add("capozi_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
     public static final Block EYA_PLUSH = blockRegistrar.add("eya_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
@@ -56,6 +56,7 @@ public @SuppressWarnings("all") class Dotzip implements ModInitializer {
             UUID.fromString("4de70f2f-8535-474c-ac9a-0a9f8eb82f8a")); // Spooks
     public static final List<UUID> bannedUUIDs = List.of(
             UUID.fromString("f34e93a7-f7eb-4128-bd50-e8cd23b3cee6"), // Sue
-            UUID.fromString("a26e29f1-532e-4116-9112-ca18ea30d27f") // chem
+            UUID.fromString("a26e29f1-532e-4116-9112-ca18ea30d27f"), // chem
+            UUID.fromString("6fd9222a-f604-4f81-a9ec-0814adcca005") // wren
     );
 }
