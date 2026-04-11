@@ -64,6 +64,12 @@ public @SuppressWarnings("all") class Registrar<T> {
         if (ids.length != objects.length) throw new IllegalStateException("Every object must have an attached String id");
         Registrar<T> registrar = new Registrar<T>(namespace, registry);
         for (int i = 0; i < ids.length; i++) {
+            if (registrar.entries.containsKey(ids[i])) {
+                throw new IllegalStateException("Duplicate object: " + ids[i]);
+            }
+            if (registrar.entries.containsValue(objects[i])) {
+                throw new IllegalStateException("Duplicate identifier: " + objects[i]);
+            }
             registrar.entries.put(ids[i], objects[i]);
         }
         setRegistries(registrar.entries, registrar.registerer);
