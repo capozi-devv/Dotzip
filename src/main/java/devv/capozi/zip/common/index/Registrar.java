@@ -62,13 +62,12 @@ public @SuppressWarnings("all") class Registrar<T> {
      */
     public static <T> Registrar of(String namespace, Registry<T> registry, String[] ids, T[] objects) throws IllegalStateException {
         if (ids.length != objects.length) throw new IllegalStateException("Every object must have an attached String id");
-        Map<String, T> entries = new LinkedHashMap<>();
-        BiConsumer<String, T> registerer = (id, t) -> Registry.register(registry, id, t);
+        Registrar<T> registrar = new Registrar<T>(namespace, registry);
         for (int i = 0; i < ids.length; i++) {
-            entries.put(ids[i], objects[i]);
+            registrar.entries.put(ids[i], objects[i]);
         }
-        setRegistries(entries, registerer);
-        return new Registrar<T>(namespace, registry);
+        setRegistries(registrar.entries, registrar.registerer);
+        return registrar;
     }
     /**
      * Calling this method will cause all objects in {@code entries} to be added to the
