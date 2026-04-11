@@ -7,11 +7,11 @@ import java.util.*;
 import java.util.function.BiConsumer;
 
 /**
- * Registrar is a registry system wherein the Type {@code T} of {@code Registrar}
+ * Registrar is a registry system wherein the Type {@code T} of {@link Registrar}
  * determines the Minecraft registry that objects added to it are put into. Methods
  * in this class that would normally have a {@code return} value instead return an
  * value of Type {@code T}
- * <p> The Registrar class provides a versilitle way to store and access registries while
+ * <p> The {@link Registrar} class provides a versilitle way to store and access registries while
  * keeping unrelated registries seperate from others. </p>
  */
 public @SuppressWarnings("all") class Registrar<T> {
