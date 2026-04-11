@@ -1,7 +1,6 @@
 package devv.capozi.zip.common.index;
 
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 
 import java.util.*;
 import java.util.function.BiConsumer;
@@ -17,7 +16,7 @@ import java.util.function.BiConsumer;
 public @SuppressWarnings("all") class Registrar<T> {
     public final String namespace;
     public Map<String, T> entries = new LinkedHashMap<>();
-    public final BiConsumer<String, T> registerer;
+    public final BiConsumer<String, T> registry_consumer;
     /**
      * The Constructor determines the namespace of objects and the registry instance to which they are added
      * @param mod_id Namespace under which to register objects
@@ -25,7 +24,7 @@ public @SuppressWarnings("all") class Registrar<T> {
      */
     public Registrar(String mod_id, Registry<T> registry) {
         this.namespace = mod_id;
-        registerer = (id, t) -> Registry.register(registry, id, t);
+        registry_consumer = (id, t) -> Registry.register(registry, id, t);
     }
     /**
      * Using the {@code add(String id, T object)} method is used to add objects to a registrar
@@ -72,7 +71,7 @@ public @SuppressWarnings("all") class Registrar<T> {
             }
             registrar.entries.put(ids[i], objects[i]);
         }
-        setRegistries(registrar.entries, registrar.registerer);
+        setRegistries(registrar.entries, registrar.registry_consumer);
         return registrar;
     }
     /**

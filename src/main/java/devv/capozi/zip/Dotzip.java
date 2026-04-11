@@ -19,8 +19,8 @@ public @SuppressWarnings("all") class Dotzip implements ModInitializer {
     public static Registrar<Item> blockItemRegistrar = new Registrar<Item>(MOD_ID, Registries.ITEM);
     @Override
     public void onInitialize() {
-        blockRegistrar.setRegistries(blockRegistrar.entries, blockRegistrar.registerer);
-        blockItemRegistrar.setRegistries(blockItemRegistrar.entries, blockItemRegistrar.registerer);
+        blockRegistrar.setRegistries(blockRegistrar.entries, blockRegistrar.registry_consumer);
+        blockItemRegistrar.setRegistries(blockItemRegistrar.entries, blockItemRegistrar.registry_consumer);
     }
     public static final Block CAPOZI_PLUSH = blockRegistrar.add("capozi_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
     public static final Block EYA_PLUSH = blockRegistrar.add("eya_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
