@@ -71,7 +71,7 @@ public @SuppressWarnings("all") class Registrar<T> {
     }
     /**
      * Calling this method will cause all objects in {@code entries} to be added to the
-     * selected registry of mathcing type with their corresponding id.
+     * selected registry of matching type with their corresponding id.
      */
     public static <T> void setRegistries(Map<String, T> entries, BiConsumer<String, T> registerer) {
         entries.forEach(registerer);
