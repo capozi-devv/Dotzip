@@ -51,7 +51,7 @@ public @SuppressWarnings("all") class Registrar<T> {
      * The of method allows any amount of objects to be registered in one method. Using this also allows
      * users to create final instances of {@link Registrar}
      <pre>{@code
-     *         public final Registrar<Item> example = new Registrar<Item>(MOD_ID, Registries.ITEM).of(MOD_ID, Registries.ITEM, new String[] {}, new Item[] {});
+     *         public final Registrar<Item> example = Registrar.of(MOD_ID, Registries.ITEM, new String[] {}, new Item[] {});
      * }</pre>
      * @param namespace The name under which objects and their ids are set
      * @param registry The {@link Registry} instance under which objects are added
