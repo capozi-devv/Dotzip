@@ -5,6 +5,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 import java.util.*;
+import java.util.function.BiConsumer;
 
 /**
  * Registrar is a registry system wherein the Type {@code T} of {@code Registrar}
@@ -15,50 +16,65 @@ import java.util.*;
  * keeping unrelated registries seperate from others. </p>
  */
 public @SuppressWarnings("all") class Registrar<T> {
-    public final String mod_id;
-    private List<String> ids = new ArrayList<>();
-    private List<T> registryObjects = new ArrayList<>();
-    public final Registry<T> registry;
-    private boolean closeRegistrar = false;
-
+    public final String namespace;
+    public Map<String, T> entries = new LinkedHashMap<>();
+    public final BiConsumer<String, T> registerer;
     /**
      * The Constructor determines the namespace of objects and the registry instance to which they are added
      * @param mod_id Namespace under which to register objects
      * @param registry Registry instace in which Objects are placed
      */
     public Registrar(String mod_id, Registry<T> registry) {
-        this.mod_id = mod_id;
-        this.registry = registry;
+        this.namespace = mod_id;
+        registerer = (id, t) -> Registry.register(registry, id, t);
     }
     /**
      * Using the {@code add(String id, T object)} method is used to add objects to a registrar
      * instance. By adding objects, the user can determine precisely what they want to register.
      *
      * @param id Takes in the Id of your registry object
-     * @param object An object to be registered that matches {@code T}, the class type
-     * @return {@code T}, An object of the same class as the class type
+     * @param object An object to be registered that matches {@link T}, the class type
+     * @return {@link T}, An object of the same class as the class type
      */
     public T add(String id, T object) {
-        if (!closeRegistrar) {
-            ids.add(id);
-            registryObjects.add(object);
-            return object;
+        if (entries.containsKey(id)) {
+            throw new IllegalStateException("Duplicate object: " + id);
         }
-        return null;
+        if (entries.containsValue(object)) {
+            throw new IllegalStateException("Duplicate identifier: " + id);
+        }
+        entries.put(id, object);
+        return object;
+    }
+
+    /**
+     * The of method allows any amount of objects to be registered in one method. Using this also allows
+     * users to create final instances of {@link Registrar}
+     <pre>{@code
+     *         public final Registrar<Item> example = new Registrar<Item>(MOD_ID, Registries.ITEM).of(MOD_ID, Registries.ITEM, new String[] {}, new Item[] {});
+     * }</pre>
+     * @param namespace The name under which objects and their ids are set
+     * @param registry The {@link Registry} instance under which objects are added
+     * @param ids The instances of {@link String} that serve as object ids
+     * @param objects The instances of class type {@link T} that are being registered
+     * @return A new instance of the Registrar with the {@code String[] ids} and
+     * {@code T[] objects} built in to it
+     * @throws IllegalStateException
+     */
+    public static <T> Registrar of(String namespace, Registry<T> registry, String[] ids, T[] objects) throws IllegalStateException {
+        if (ids.length != objects.length) throw new IllegalStateException("Every object must have an attached String id");
+        Registrar<T> registrar = new Registrar<T>(namespace, registry);
+        for (int i = 0; i < ids.length; i++) {
+            registrar.entries.put(ids[i], objects[i]);
+        }
+        setRegistries(registrar.entries, registrar.registerer);
+        return registrar;
     }
     /**
-     * Calling this method will cause all objects in {@code registryObjects} to be added to the
-     * selected registry of mathcing type with an id of a simliar List index to {@code ids}. If the size of
-     * {@code ids} and {@code registryObjects} will cause an {@code IllegalStateException}
-     * @throws  IllegalStateException
+     * Calling this method will cause all objects in {@code entries} to be added to the
+     * selected registry of mathcing type with their corresponding id.
      */
-    public void setRegistries() {
-        if (!closeRegistrar) {
-            if (ids.size() != registryObjects.size()) throw new IllegalStateException("mismatched_object_key_array_size");
-            for (int i = 0; i < ids.size(); i++) {
-                Registry.register(registry, Identifier.of(mod_id, ids.get(i)), registryObjects.get(i));
-            }
-            closeRegistrar = true;
-        }
+    public static <T> void setRegistries(Map<String, T> entries, BiConsumer<String, T> registerer) {
+        entries.forEach(registerer);
     }
 }
