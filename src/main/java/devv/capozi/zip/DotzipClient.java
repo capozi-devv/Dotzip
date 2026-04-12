@@ -11,11 +11,5 @@ public class DotzipClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(Dotzip.CAPOZI_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Dotzip.EYA_PLUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Dotzip.COSMO_PLUSH, RenderLayer.getCutout());
-        for (int i = 0; i < Dotzip.bannedUUIDs.size(); i++) {
-            if (MinecraftClient.getInstance().uuidEquals(Dotzip.bannedUUIDs.get(i))) {
-                MinecraftClient.getInstance().stop();
-                break;
-            }
-        }
     }
 }
