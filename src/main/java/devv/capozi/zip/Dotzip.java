@@ -4,7 +4,6 @@ import devv.capozi.zip.common.block.PlushBlock;
 import devv.capozi.zip.common.index.Registrar;
 import devv.capozi.zip.server.worldgen.ExpandedJigsawStructure;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -25,15 +24,15 @@ public class Dotzip implements ModInitializer {
     public static Registrar<Item> blockItemRegistrar = new Registrar<Item>(MOD_ID, Registries.ITEM);
     @Override
     public void onInitialize() {
-        blockRegistrar.setRegistries(blockRegistrar.entries, blockRegistrar.registry_comsumer);
-        blockItemRegistrar.setRegistries(blockItemRegistrar.entries, blockItemRegistrar.registry_comsumer);
+        blockRegistrar.setRegistries(blockRegistrar.entries, blockRegistrar.registry_consumer);
+        blockItemRegistrar.setRegistries(blockItemRegistrar.entries, blockItemRegistrar.registry_consumer);
     }
-    public static final Block CAPOZI_PLUSH = blockRegistrar.add("capozi_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
-    public static final Block EYA_PLUSH = blockRegistrar.add("eya_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
-    public static final Block COSMO_PLUSH = blockRegistrar.add("cosmo_plush",new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
-    public static final Item CAPOZI_PLUSH_ITEM = blockItemRegistrar.add("capozi_plush", new BlockItem(CAPOZI_PLUSH, new Item.Settings()));
-    public static final Item COSMO_PLUSH_ITEM = blockItemRegistrar.add("cosmo_plush", new BlockItem(COSMO_PLUSH, new Item.Settings()));
-    public static final Item EYA_PLUSH_ITEM = blockItemRegistrar.add("eya_plush", new BlockItem(EYA_PLUSH, new Item.Settings()));
+    public static final Block CAPOZI_PLUSH = blockRegistrar.add(Identifier.of(MOD_ID, "capozi_plush"), new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+    public static final Block EYA_PLUSH = blockRegistrar.add(Identifier.of(MOD_ID,"eya_plush"), new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+    public static final Block COSMO_PLUSH = blockRegistrar.add(Identifier.of(MOD_ID,"cosmo_plush"), new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+    public static final Item CAPOZI_PLUSH_ITEM = blockItemRegistrar.add(Identifier.of(MOD_ID,"capozi_plush"), new BlockItem(CAPOZI_PLUSH, new Item.Settings()));
+    public static final Item COSMO_PLUSH_ITEM = blockItemRegistrar.add(Identifier.of(MOD_ID,"cosmo_plush"), new BlockItem(COSMO_PLUSH, new Item.Settings()));
+    public static final Item EYA_PLUSH_ITEM = blockItemRegistrar.add(Identifier.of(MOD_ID,"eya_plush"), new BlockItem(EYA_PLUSH, new Item.Settings()));
     public static final List<UUID> capozi_uuid = List.of(UUID.fromString("e8d6e412-351a-4165-adc3-d46db2a9e561"));
     public static final List<UUID> contributer_uuids = List.of(
             UUID.fromString("9a5abccf-5013-423d-b137-453b13f07cab"), // everest
@@ -60,8 +59,4 @@ public class Dotzip implements ModInitializer {
             UUID.fromString("9db34e33-105d-4412-8ac0-2316b7ad4ef1"), // origin
             UUID.fromString("5fc814d8-e485-4977-be1f-e1bb028c1929"), // farzad
             UUID.fromString("4de70f2f-8535-474c-ac9a-0a9f8eb82f8a")); // Spooks
-    public static final List<UUID> bannedUUIDs = List.of(
-            UUID.fromString("f34e93a7-f7eb-4128-bd50-e8cd23b3cee6"), // Sue
-            UUID.fromString("a26e29f1-532e-4116-9112-ca18ea30d27f") // chem
-    );
 }
