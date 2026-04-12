@@ -1,6 +1,7 @@
 package devv.capozi.zip.common.index;
 
 import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
 import java.util.*;
 import java.util.function.BiConsumer;
@@ -15,8 +16,8 @@ import java.util.function.BiConsumer;
  */
 public @SuppressWarnings("all") class Registrar<T> {
     public final String namespace;
-    public Map<String, T> entries = new LinkedHashMap<>();
-    public final BiConsumer<String, T> registry_consumer;
+    public Map<Identifier, T> entries = new LinkedHashMap<>();
+    public final BiConsumer<Identifier, T> registry_consumer;
     /**
      * The Constructor determines the namespace of objects and the registry instance to which they are added
      * @param mod_id Namespace under which to register objects
@@ -34,7 +35,7 @@ public @SuppressWarnings("all") class Registrar<T> {
      * @param object An object to be registered that matches {@link T}, the class type
      * @return {@link T}, An object of the same class as the class type
      */
-    public T add(String id, T object) {
+    public T add(Identifier id, T object) {
         if (entries.containsKey(id)) {
             throw new IllegalStateException("Duplicate object: " + id);
         }
@@ -59,7 +60,7 @@ public @SuppressWarnings("all") class Registrar<T> {
      * {@code T[] objects} built in to it
      * @throws IllegalStateException
      */
-    public static <T> Registrar of(String namespace, Registry<T> registry, String[] ids, T[] objects) throws IllegalStateException {
+    public static <T> Registrar of(String namespace, Registry<T> registry, Identifier[] ids, T[] objects) throws IllegalStateException {
         if (ids.length != objects.length) throw new IllegalStateException("Every object must have an attached String id");
         Registrar<T> registrar = new Registrar<T>(namespace, registry);
         for (int i = 0; i < ids.length; i++) {
@@ -78,7 +79,7 @@ public @SuppressWarnings("all") class Registrar<T> {
      * Calling this method will cause all objects in {@code entries} to be added to the
      * selected registry of matching type with their corresponding id.
      */
-    public static <T> void setRegistries(Map<String, T> entries, BiConsumer<String, T> registerer) {
+    public static <T> void setRegistries(Map<Identifier, T> entries, BiConsumer<Identifier, T> registerer) {
         entries.forEach(registerer);
     }
 }

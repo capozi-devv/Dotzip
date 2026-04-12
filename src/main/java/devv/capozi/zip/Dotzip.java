@@ -9,6 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,12 +23,12 @@ public @SuppressWarnings("all") class Dotzip implements ModInitializer {
         blockRegistrar.setRegistries(blockRegistrar.entries, blockRegistrar.registry_consumer);
         blockItemRegistrar.setRegistries(blockItemRegistrar.entries, blockItemRegistrar.registry_consumer);
     }
-    public static final Block CAPOZI_PLUSH = blockRegistrar.add("capozi_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
-    public static final Block EYA_PLUSH = blockRegistrar.add("eya_plush", new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
-    public static final Block COSMO_PLUSH = blockRegistrar.add("cosmo_plush",new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
-    public static final Item CAPOZI_PLUSH_ITEM = blockItemRegistrar.add("capozi_plush", new BlockItem(CAPOZI_PLUSH, new Item.Settings()));
-    public static final Item COSMO_PLUSH_ITEM = blockItemRegistrar.add("cosmo_plush", new BlockItem(COSMO_PLUSH, new Item.Settings()));
-    public static final Item EYA_PLUSH_ITEM = blockItemRegistrar.add("eya_plush", new BlockItem(EYA_PLUSH, new Item.Settings()));
+    public static final Block CAPOZI_PLUSH = blockRegistrar.add(Identifier.of(MOD_ID, "capozi_plush"), new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+    public static final Block EYA_PLUSH = blockRegistrar.add(Identifier.of(MOD_ID,"eya_plush"), new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+    public static final Block COSMO_PLUSH = blockRegistrar.add(Identifier.of(MOD_ID,"cosmo_plush"), new PlushBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque()));
+    public static final Item CAPOZI_PLUSH_ITEM = blockItemRegistrar.add(Identifier.of(MOD_ID,"capozi_plush"), new BlockItem(CAPOZI_PLUSH, new Item.Settings()));
+    public static final Item COSMO_PLUSH_ITEM = blockItemRegistrar.add(Identifier.of(MOD_ID,"cosmo_plush"), new BlockItem(COSMO_PLUSH, new Item.Settings()));
+    public static final Item EYA_PLUSH_ITEM = blockItemRegistrar.add(Identifier.of(MOD_ID,"eya_plush"), new BlockItem(EYA_PLUSH, new Item.Settings()));
     public static final List<UUID> capozi_uuid = List.of(UUID.fromString("e8d6e412-351a-4165-adc3-d46db2a9e561"));
     public static final List<UUID> contributer_uuids = List.of(
             UUID.fromString("9a5abccf-5013-423d-b137-453b13f07cab"), // everest
