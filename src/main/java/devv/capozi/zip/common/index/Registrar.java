@@ -1,6 +1,7 @@
 package devv.capozi.zip.common.index;
 
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 
 import java.util.*;
