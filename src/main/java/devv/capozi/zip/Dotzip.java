@@ -38,6 +38,7 @@ public class Dotzip implements ModInitializer {
             UUID.fromString("9a5abccf-5013-423d-b137-453b13f07cab"), // everest
             UUID.fromString("87d00b3c-4486-463d-ad9c-f8baed3fec71"), // eyalego
             UUID.fromString("9da4f059-fb15-4b34-a2e5-54cfecf7c22e"), // Kindling
+            UUID.fromString("b98321a1-933b-4517-98ac-d5b70c8966f2"), // moth
             UUID.fromString("c7ef1f45-bc5a-4b59-9434-62e6d1fb4770")); // cosmo
     public static final List<UUID> friendUUIDs = List.of(
             UUID.fromString("39be881e-40d8-4afb-8458-12f4fc07c846"), // Hexader
@@ -46,7 +47,6 @@ public class Dotzip implements ModInitializer {
             UUID.fromString("ae445ba6-77ad-47fb-b1db-e582e46d2788"), // rustic
             UUID.fromString("1a3df47b-c05d-46fd-979b-77a6acbfd9e1"), // smipner
             UUID.fromString("14a34d5c-9840-43c1-8174-251ce81d6eea"), // unknown
-            UUID.fromString("b98321a1-933b-4517-98ac-d5b70c8966f2"), // moth
             UUID.fromString("ec23b8cd-fb66-4d9b-83b9-d748c0b05e6e"), // yuuki
             UUID.fromString("7a4a8f5e-acd5-41d7-9e3d-998bfd623c3d"), // Lazy
             UUID.fromString("0ec5dee7-d32a-44db-9b9d-c03b05459c65"), // Chaos
