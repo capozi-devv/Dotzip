@@ -1,6 +1,7 @@
 package devv.capozi.zip.common.index;
 
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 import java.util.*;
@@ -23,9 +24,9 @@ public @SuppressWarnings("all") class Registrar<T> {
      * @param mod_id Namespace under which to register objects
      * @param registry Registry instace in which Objects are placed
      */
-    public Registrar(String mod_id, Registry<T> registry) {
+    public Registrar(String mod_id, BiConsumer<Identifier, T> registry_consumer) {
         this.namespace = mod_id;
-        registry_consumer = (id, t) -> Registry.register(registry, id, t);
+        this.registry_consumer = registry_consumer;
     }
     /**
      * Using the {@code add(String id, T object)} method is used to add objects to a registrar
@@ -45,7 +46,6 @@ public @SuppressWarnings("all") class Registrar<T> {
         entries.put(id, object);
         return object;
     }
-
     /**
      * The of method allows any amount of objects to be registered in one method. Using this also allows
      * users to create final instances of {@link Registrar}
@@ -60,9 +60,9 @@ public @SuppressWarnings("all") class Registrar<T> {
      * {@code T[] objects} built in to it
      * @throws IllegalStateException
      */
-    public static <T> Registrar of(String namespace, Registry<T> registry, Identifier[] ids, T[] objects) throws IllegalStateException {
+    public static <T> Registrar of(String namespace, Registry<T> registry, Identifier[] ids, T[] objects, BiConsumer<Identifier, T> registry_consumer) throws IllegalStateException {
         if (ids.length != objects.length) throw new IllegalStateException("Every object must have an attached String id");
-        Registrar<T> registrar = new Registrar<T>(namespace, registry);
+        Registrar<T> registrar = new Registrar<T>(namespace, registry_consumer);
         for (int i = 0; i < ids.length; i++) {
             if (registrar.entries.containsKey(ids[i])) {
                 throw new IllegalStateException("Duplicate object: " + ids[i]);

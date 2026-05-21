@@ -9,6 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -16,8 +17,8 @@ import java.util.UUID;
 
 public @SuppressWarnings("all") class Dotzip implements ModInitializer {
     public static final String MOD_ID = "dotzip";
-    public static Registrar<Block> blockRegistrar = new Registrar<Block>(MOD_ID, Registries.BLOCK);
-    public static Registrar<Item> blockItemRegistrar = new Registrar<Item>(MOD_ID, Registries.ITEM);
+    public static Registrar<Block> blockRegistrar = new Registrar<Block>(MOD_ID, (id, t) -> Registry.register(Registries.BLOCK, id, t));
+    public static Registrar<Item> blockItemRegistrar = new Registrar<Item>(MOD_ID, (id, t) -> Registry.register(Registries.ITEM, id, t));
     @Override
     public void onInitialize() {
         blockRegistrar.setRegistries(blockRegistrar.entries, blockRegistrar.registry_consumer);
