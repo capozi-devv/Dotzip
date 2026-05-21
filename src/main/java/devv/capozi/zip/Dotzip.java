@@ -20,8 +20,8 @@ import java.util.UUID;
 public class Dotzip implements ModInitializer {
     public static final String MOD_ID = "dotzip";
     public static final StructureType<ExpandedJigsawStructure> EXPANDED_JIGSAW = Registry.register(Registries.STRUCTURE_TYPE, new Identifier(MOD_ID, "expanded_jigsaw"), () -> ExpandedJigsawStructure.CODEC);
-    public static Registrar<Block> blockRegistrar = new Registrar<Block>(MOD_ID, Registries.BLOCK);
-    public static Registrar<Item> blockItemRegistrar = new Registrar<Item>(MOD_ID, Registries.ITEM);
+    public static Registrar<Block> blockRegistrar = new Registrar<Block>(MOD_ID, ((identifier, item) -> Registry.register(Registries.BLOCK, identifier, item)));
+    public static Registrar<Item> blockItemRegistrar = new Registrar<Item>(MOD_ID, ((identifier, item) -> Registry.register(Registries.ITEM, identifier, item)));
     @Override
     public void onInitialize() {
         blockRegistrar.setRegistries(blockRegistrar.entries, blockRegistrar.registry_consumer);

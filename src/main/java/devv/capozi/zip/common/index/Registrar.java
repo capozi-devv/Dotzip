@@ -24,9 +24,9 @@ public @SuppressWarnings("all") class Registrar<T> {
      * @param mod_id Namespace under which to register objects
      * @param registry Registry instace in which Objects are placed
      */
-    public Registrar(String mod_id, Registry<T> registry) {
+    public Registrar(String mod_id, BiConsumer<Identifier, T> registry_consumer) {
         this.namespace = mod_id;
-        registry_consumer = (id, t) -> Registry.register(registry, id, t);
+        this.registry_consumer = registry_consumer;
     }
     /**
      * Using the {@code add(String id, T object)} method is used to add objects to a registrar
@@ -63,7 +63,7 @@ public @SuppressWarnings("all") class Registrar<T> {
      */
     public static <T> Registrar of(String namespace, Registry<T> registry, Identifier[] ids, T[] objects) throws IllegalStateException {
         if (ids.length != objects.length) throw new IllegalStateException("Every object must have an attached String id");
-        Registrar<T> registrar = new Registrar<T>(namespace, registry);
+        Registrar<T> registrar = new Registrar<T>(namespace, ((identifier, t) -> Registry.register(registry, identifier, t)));
         for (int i = 0; i < ids.length; i++) {
             if (registrar.entries.containsKey(ids[i])) {
                 throw new IllegalStateException("Duplicate object: " + ids[i]);
