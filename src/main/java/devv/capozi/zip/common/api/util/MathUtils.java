@@ -1,4 +1,4 @@
-package devv.capozi.zip.common.util;
+package devv.capozi.zip.common.api.util;
 
 import org.joml.Vector3f;
 

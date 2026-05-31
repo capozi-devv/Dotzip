@@ -1,7 +1,6 @@
-package devv.capozi.zip.common.index;
+package devv.capozi.zip.common.api.index;
 
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 
 import java.util.*;
@@ -16,7 +15,6 @@ import java.util.function.BiConsumer;
  * keeping unrelated registries seperate from others. </p>
  */
 public @SuppressWarnings("all") class Registrar<T> {
-    public final String namespace;
     public Map<Identifier, T> entries = new LinkedHashMap<>();
     public final BiConsumer<Identifier, T> registry_consumer;
     /**
@@ -24,8 +22,7 @@ public @SuppressWarnings("all") class Registrar<T> {
      * @param mod_id Namespace under which to register objects
      * @param registry Registry instace in which Objects are placed
      */
-    public Registrar(String mod_id, BiConsumer<Identifier, T> registry_consumer) {
-        this.namespace = mod_id;
+    public Registrar(BiConsumer<Identifier, T> registry_consumer) {
         this.registry_consumer = registry_consumer;
     }
     /**
@@ -63,7 +60,7 @@ public @SuppressWarnings("all") class Registrar<T> {
      */
     public static <T> Registrar of(String namespace, Registry<T> registry, Identifier[] ids, T[] objects) throws IllegalStateException {
         if (ids.length != objects.length) throw new IllegalStateException("Every object must have an attached String id");
-        Registrar<T> registrar = new Registrar<T>(namespace, ((identifier, t) -> Registry.register(registry, identifier, t)));
+        Registrar<T> registrar = new Registrar<T>(((identifier, t) -> Registry.register(registry, identifier, t)));
         for (int i = 0; i < ids.length; i++) {
             if (registrar.entries.containsKey(ids[i])) {
                 throw new IllegalStateException("Duplicate object: " + ids[i]);
