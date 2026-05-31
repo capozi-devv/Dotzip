@@ -1,6 +1,7 @@
-package devv.capozi.zip.common.util;
+package devv.capozi.zip.common.api.util;
 
 import java.awt.*;
+import java.util.List;
 
 public class ColorUtils {
     // Convert RGB (0–255) to Hex
@@ -15,6 +16,11 @@ public class ColorUtils {
     // Convert Hex to Color
     public static Color hexToColor(String hex) {
         return Color.decode(hex);
+    }
+    // Check if hex codes can produce a real value
+    public static boolean hexValidator(String hex) {
+        if (hex == null) return false;
+        return hex.matches("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
     }
     // Convert RGB to HSL (H: 0–360, S/L: 0–1)
     public static float[] rgbToHSL(int r, int g, int b) {

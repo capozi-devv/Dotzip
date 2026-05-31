@@ -1,7 +1,6 @@
-package devv.capozi.zip.common.index;
+package devv.capozi.zip.common.api.index;
 
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 import java.util.*;
@@ -16,16 +15,14 @@ import java.util.function.BiConsumer;
  * keeping unrelated registries seperate from others. </p>
  */
 public @SuppressWarnings("all") class Registrar<T> {
-    public final String namespace;
     public Map<Identifier, T> entries = new LinkedHashMap<>();
     public final BiConsumer<Identifier, T> registry_consumer;
     /**
      * The Constructor determines the namespace of objects and the registry instance to which they are added
      * @param mod_id Namespace under which to register objects
-     * @param registry Registry instace in which Objects are placed
+     * @param registry_consumer The consumer method used to create or register objects
      */
-    public Registrar(String mod_id, BiConsumer<Identifier, T> registry_consumer) {
-        this.namespace = mod_id;
+    public Registrar(BiConsumer<Identifier, T> registry_consumer) {
         this.registry_consumer = registry_consumer;
     }
     /**
@@ -35,6 +32,7 @@ public @SuppressWarnings("all") class Registrar<T> {
      * @param id Takes in the Id of your registry object
      * @param object An object to be registered that matches {@link T}, the class type
      * @return {@link T}, An object of the same class as the class type
+     * @throws IllegalStateException
      */
     public T add(Identifier id, T object) {
         if (entries.containsKey(id)) {
@@ -47,7 +45,7 @@ public @SuppressWarnings("all") class Registrar<T> {
         return object;
     }
     /**
-     * The of method allows any amount of objects to be registered in one method. Using this also allows
+     * The {@code of()} method allows any amount of objects to be registered in one method. Using this also allows
      * users to create final instances of {@link Registrar}
      <pre>{@code
      *         public final Registrar<Item> example = Registrar.of(MOD_ID, Registries.ITEM, new String[] {}, new Item[] {});
@@ -62,7 +60,7 @@ public @SuppressWarnings("all") class Registrar<T> {
      */
     public static <T> Registrar of(String namespace, Registry<T> registry, Identifier[] ids, T[] objects, BiConsumer<Identifier, T> registry_consumer) throws IllegalStateException {
         if (ids.length != objects.length) throw new IllegalStateException("Every object must have an attached String id");
-        Registrar<T> registrar = new Registrar<T>(namespace, registry_consumer);
+        Registrar<T> registrar = new Registrar<T>(registry_consumer);
         for (int i = 0; i < ids.length; i++) {
             if (registrar.entries.containsKey(ids[i])) {
                 throw new IllegalStateException("Duplicate object: " + ids[i]);
