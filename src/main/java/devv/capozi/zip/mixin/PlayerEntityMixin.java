@@ -37,7 +37,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Inject(method = "dropInventory", at = @At("HEAD"))
     private void dotzip$dropInventory(CallbackInfo ci) {
         if (DataConstants.capozi_uuid.contains(this.getUuid())) {
-            this.getWorld().spawnEntity(new ItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), new ItemStack(Dotzip.CAPOZI_PLUSH)));
+            this.getEntityWorld().spawnEntity(new ItemEntity(this.getEntityWorld(), this.getX(), this.getY(), this.getZ(), new ItemStack(Dotzip.CAPOZI_PLUSH)));
         }
     }
 }

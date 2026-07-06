@@ -25,7 +25,7 @@ public abstract class ServerWorldMixin {
             if (data.getPersistent().getString("hex_code") == null) {
                 DataConstants.playerColors.putIfAbsent(player.getGameProfile(), "");
             } else {
-                DataConstants.playerColors.putIfAbsent(player.getGameProfile(), data.getPersistent().getString("hex_code"));
+                DataConstants.playerColors.putIfAbsent(player.getGameProfile(), data.getPersistent().getString("hex_code").get());
             }
         }
     }

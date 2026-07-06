@@ -94,45 +94,45 @@ public class TextsUtils {
         return style -> style.withFormatting(formatting);
     }
 
-    public UnaryOperator<Style> font(Identifier font) {
-        return style -> style.withFont(font);
-    }
+//    public UnaryOperator<Style> font(Identifier font) {
+//        return style -> style.withFont(font);
+//    }
 
-    public UnaryOperator<Style> hover(Text hover) {
-        return style -> style.withHoverEvent(
-                new HoverEvent(
-                        HoverEvent.Action.SHOW_TEXT,
-                        hover
-                )
-        );
-    }
-
-    public UnaryOperator<Style> clickRun(String command) {
-        return style -> style.withClickEvent(
-                new ClickEvent(
-                        ClickEvent.Action.RUN_COMMAND,
-                        command
-                )
-        );
-    }
-
-    public UnaryOperator<Style> clickSuggest(String command) {
-        return style -> style.withClickEvent(
-                new ClickEvent(
-                        ClickEvent.Action.SUGGEST_COMMAND,
-                        command
-                )
-        );
-    }
-
-    public UnaryOperator<Style> clickCopy(String text) {
-        return style -> style.withClickEvent(
-                new ClickEvent(
-                        ClickEvent.Action.COPY_TO_CLIPBOARD,
-                        text
-                )
-        );
-    }
+//    public UnaryOperator<Style> hover(Text hover) {
+//        return style -> style.withHoverEvent(
+//                new HoverEvent(
+//                        HoverEvent.Action.SHOW_TEXT,
+//                        hover
+//                )
+//        );
+//    }
+//
+//    public UnaryOperator<Style> clickRun(String command) {
+//        return style -> style.withClickEvent(
+//                new ClickEvent(
+//                        ClickEvent.Action.RUN_COMMAND,
+//                        command
+//                )
+//        );
+//    }
+//
+//    public UnaryOperator<Style> clickSuggest(String command) {
+//        return style -> style.withClickEvent(
+//                new ClickEvent(
+//                        ClickEvent.Action.SUGGEST_COMMAND,
+//                        command
+//                )
+//        );
+//    }
+//
+//    public UnaryOperator<Style> clickCopy(String text) {
+//        return style -> style.withClickEvent(
+//                new ClickEvent(
+//                        ClickEvent.Action.COPY_TO_CLIPBOARD,
+//                        text
+//                )
+//        );
+//    }
 
     /* ============================================================ */
     /* Style application                                            */

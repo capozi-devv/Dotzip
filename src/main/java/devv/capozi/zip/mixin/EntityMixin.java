@@ -1,8 +1,15 @@
 package devv.capozi.zip.mixin;
 
+import com.mojang.serialization.Codec;
 import devv.capozi.zip.common.api.PersistentDataSaver;
+import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
+import net.minecraft.text.Style;
+import net.minecraft.util.dynamic.Codecs;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,17 +26,18 @@ public abstract class EntityMixin implements PersistentDataSaver {
         }
         return persistentData;
     }
-    @Inject(method = "writeNbt", at = @At("HEAD"))
-    protected void injectWriteMethod(NbtCompound nbt, CallbackInfoReturnable<NbtCompound> info) {
+    @Inject(method = "writeData", at = @At("HEAD"))
+    protected void injectWriteMethod(WriteView view, CallbackInfo ci) {
         if(persistentData != null) {
-            nbt.put("dotzip.player_name_hex", persistentData);
+            view.put("dotzip.player_name_hex", NbtCompound.CODEC, persistentData);
         }
     }
-
-    @Inject(method = "readNbt", at = @At("HEAD"))
-    protected void injectReadMethod(NbtCompound nbt, CallbackInfo ci) {
-        if (nbt.contains("dotzip.player_name_hex", 10)) {
-            persistentData = nbt.getCompound("dotzip.player_name_hex");
+    @Inject(method = "readData", at = @At("HEAD"))
+    protected void injectReadMethod(ReadView view, CallbackInfo ci) {
+        if (this.persistentData != null) {
+            if (view.contains("dotzip.player_name_hex")) {
+                
+            }
         }
     }
 }

@@ -35,10 +35,10 @@ public interface CommandInit {
                                         PersistentDataSaver.setHex((PersistentDataSaver)player, hex);
                                         DataConstants.playerColors.put(player.getGameProfile(), hex);
                                         System.out.println(player.getDisplayName().getString() + " -> " + hex);
-                                        player.sendMessage(Text.literal("Name colour changed successfully!").formatted(Formatting.DARK_GREEN));
+                                        player.sendMessage(Text.literal("Name colour changed successfully!").formatted(Formatting.DARK_GREEN), false);
                                         return 1;
                                     } else {
-                                        player.sendMessage(Text.literal("Invalid hex code provided").formatted(Formatting.RED));
+                                        player.sendMessage(Text.literal("Invalid hex code provided").formatted(Formatting.RED), false);
                                         return 0;
                                     }
                                 }

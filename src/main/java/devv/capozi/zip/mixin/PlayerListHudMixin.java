@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public class PlayerListHudMixin {
    @ModifyReturnValue(method = "applyGameModeFormatting", at = @At("RETURN"))
    private Text dotzip$applyCustomNameColours(Text original, PlayerListEntry entry) {
-       if (DataConstants.capozi_uuid.contains(entry.getProfile().getId())) {
+       if (DataConstants.capozi_uuid.contains(entry.getProfile().id())) {
            return Text.literal("capozi.devv").styled(new TextsUtils().colorHex("#ff005a"));
        }
        if (DataConstants.playerColors.containsKey(entry.getProfile())) {
