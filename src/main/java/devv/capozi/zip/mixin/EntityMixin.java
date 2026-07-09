@@ -35,8 +35,8 @@ public abstract class EntityMixin implements PersistentDataSaver {
     @Inject(method = "readData", at = @At("HEAD"))
     protected void injectReadMethod(ReadView view, CallbackInfo ci) {
         if (this.persistentData != null) {
-            if (view.contains("dotzip.player_name_hex")) {
-                
+            if (view.read("dotzip.player_name_hex", NbtCompound.CODEC).isPresent()) {
+                persistentData = view.read("dotzip.player_name_hex", NbtCompound.CODEC).get();
             }
         }
     }

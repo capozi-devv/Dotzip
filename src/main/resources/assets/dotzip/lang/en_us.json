@@ -1,5 +1,8 @@
 {
   "block.dotzip.capozi_plush": "Capozi Plush",
   "block.dotzip.cosmo_plush": "Cosmo Plush",
-  "block.dotzip.eya_plush": "Eya Plush"
+  "block.dotzip.eya_plush": "Eya Plush",
+  "item.dotzip.capozi_plush": "Capozi Plush",
+  "item.dotzip.cosmo_plush": "Cosmo Plush",
+  "item.dotzip.eya_plush": "Eya Plush"
 }

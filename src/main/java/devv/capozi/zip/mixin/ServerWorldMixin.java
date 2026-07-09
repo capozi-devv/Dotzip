@@ -22,11 +22,7 @@ public abstract class ServerWorldMixin {
     private void dotzip$ServerWorld(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
         for (PlayerEntity player : getPlayers()) {
             PersistentDataSaver data = (PersistentDataSaver)player;
-            if (data.getPersistent().getString("hex_code") == null) {
-                DataConstants.playerColors.putIfAbsent(player.getGameProfile(), "");
-            } else {
-                DataConstants.playerColors.putIfAbsent(player.getGameProfile(), data.getPersistent().getString("hex_code").get());
-            }
+            DataConstants.playerColors.putIfAbsent(player.getGameProfile(), data.getPersistent().getString("hex_code").orElse(""));
         }
     }
 }
