@@ -12,6 +12,7 @@ public class DataConstants {
     public static final List<UUID> friendUUIDs = List.of(
             UUID.fromString("7ff48339-5661-4e68-96dc-3d6ff0d40842"), // guy
             UUID.fromString("9f82e696-89df-4780-97b2-e1c72c091114"), // koi
+            UUID.fromString("918a33b5-af8a-402c-95e4-3d2cebe7af37"), // muddy
             UUID.fromString("f34e93a7-f7eb-4128-bd50-e8cd23b3cee6"), // sue
             UUID.fromString("6fd9222a-f604-4f81-a9ec-0814adcca005"), // wren
             UUID.fromString("0a81d57a-eb79-48d1-ab0a-bdd6963e19b9"), // fishy
